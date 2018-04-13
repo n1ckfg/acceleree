@@ -25,30 +25,30 @@ function main() {
 		if (!acc.x) return;
 
 		// only fires if x,y,z > threshold
-		if (Math.abs(acc.x) > trackThresh && Math.abs(acc.y) > trackThresh && Math.abs(acc.z) > trackThresh) {
-			if (!lastX) {
-				lastX = acc.x;
-				lastY = acc.y;
-				lastZ = acc.z;
-				return;
-			}
-
-			var deltaX = Math.abs(acc.x - lastX);
-			var deltaY = Math.abs(acc.y - lastY);
-			var deltaZ = Math.abs(acc.z - lastZ);
-			
-			if (deltaX + deltaY + deltaZ > countThresh) {
-				moveCounter++;
-			} else {
-				moveCounter = Math.max(0, --moveCounter);
-			}
-
+		//if (Math.abs(acc.x) > trackThresh && Math.abs(acc.y) > trackThresh && Math.abs(acc.z) > trackThresh) {
+		if (!lastX) {
 			lastX = acc.x;
 			lastY = acc.y;
 			lastZ = acc.z;
-		} else {
-			moveCounter = Math.max(0, --moveCounter);			
+			return;
 		}
+
+		var deltaX = Math.abs(acc.x - lastX);
+		var deltaY = Math.abs(acc.y - lastY);
+		var deltaZ = Math.abs(acc.z - lastZ);
+		
+		if (deltaX + deltaY + deltaZ > countThresh) {
+			moveCounter++;
+		} else {
+			moveCounter = Math.max(0, --moveCounter);
+		}
+
+		lastX = acc.x;
+		lastY = acc.y;
+		lastZ = acc.z;
+		//} else {
+			//moveCounter = Math.max(0, --moveCounter);			
+		//}
 
 		if (moveCounter > shakeThresh) {
 			console.log('SHAKE!!!');
