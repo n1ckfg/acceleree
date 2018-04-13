@@ -6,19 +6,19 @@
 
 function main() {
 
-	window.addEventListener('devicemotion', motion, false);
+	window.addEventListener("devicemotion", motion, false);
 
 	var lastX, lastY, lastZ;
 	var moveCounter = 0;
 	var trackThresh = 0.001;
 	var countThresh = 3;
-	var shakeThresh = 20;
+	var activeThresh = 20;
 
 	var box = document.getElementById("box");
 
 	function motion(e) {
 		var acc = e.acceleration;
-		if (!acc.hasOwnProperty('x')) {
+		if (!acc.hasOwnProperty("x")) {
 			acc = e.accelerationIncludingGravity;
 		}
 
@@ -50,8 +50,8 @@ function main() {
 			moveCounter = Math.max(0, --moveCounter);			
 		}
 
-		if (moveCounter > shakeThresh) {
-			console.log('SHAKE!!!');
+		if (moveCounter > activeThresh) {
+			console.log("SHAKE!");
 			document.body.style.backgroundColor = "red";
 		} else if (moveCounter === 0) {
 			document.body.style.backgroundColor = "blue";
@@ -60,7 +60,7 @@ function main() {
 		var accX = round(acc.x, 3);
 		var accY = round(acc.y, 3);
 		var accZ = round(acc.z, 3);
-		box.innerHTML = "counter:<br>" + moveCounter + "/" + shakeThresh + "<br><br>x: " + accX + "<br>y: " + accY + "<br>z: " + accZ;
+		box.innerHTML = "threshold:<br>" + moveCounter + "/" + activeThresh + "<br><br>x: " + accX + "<br>y: " + accY + "<br>z: " + accZ;
 	}
 
 	function round(number, precision) {
