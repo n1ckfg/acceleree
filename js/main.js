@@ -6,10 +6,12 @@
 
 function main() {
 
+	var box = document.getElementById("box");
+
 	window.addEventListener('devicemotion', motion, false);
 
-	let lastX, lastY, lastZ;
-	let moveCounter = 0;
+	var lastX, lastY, lastZ;
+	var moveCounter = 0;
 
 	function motion(e) {
 		let acc = e.acceleration;
@@ -39,12 +41,13 @@ function main() {
 				moveCounter = Math.max(0, --moveCounter);
 			}
 
-			document.body.innerHtml = moveCounter;
+			box.innerHtml = "counter: " + moveCounter;
 
-			if (moveCounter > 10) {
+			if (moveCounter > 20) {
 				console.log('SHAKE!!!');
 				document.body.style.backgroundColor = "red";
-				moveCounter = 0;
+			} else if (moveCounter === 0) {
+				document.body.style.backgroundColor = "white";
 			}
 
 			lastX = acc.x;
@@ -52,6 +55,7 @@ function main() {
 			lastZ = acc.z;
 		}
 	}
+
 }
 
 window.onload = main;
