@@ -10,21 +10,22 @@ function main() {
 
 	var lastX, lastY, lastZ;
 	var moveCounter = 0;
-	var shakeThreshold = 20;
+	var trackThresh = 1;
+	var countThresh = 3;
+	var shakeThresh = 20;
 
 	var box = document.getElementById("box");
 
 	function motion(e) {
-		let acc = e.acceleration;
+		var acc = e.acceleration;
 		if (!acc.hasOwnProperty('x')) {
 			acc = e.accelerationIncludingGravity;
 		}
 
 		if (!acc.x) return;
 
-		// only log if x,y,z > 1
-		if (Math.abs(acc.x) >= 1 && Math.abs(acc.y) >= 1 && Math.abs(acc.z) >=1) {
-			// console.log('motion', acc);
+		// only fires if x,y,z > threshold
+		if (Math.abs(acc.x) > trackThresh && Math.abs(acc.y) > trackThresh && Math.abs(acc.z) > trackThresh) {
 			if (!lastX) {
 				lastX = acc.x;
 				lastY = acc.y;
@@ -32,29 +33,31 @@ function main() {
 				return;
 			}
 
-			let deltaX = Math.abs(acc.x - lastX);
-			let deltaY = Math.abs(acc.y - lastY);
-			let deltaZ = Math.abs(acc.z - lastZ);
+			var deltaX = Math.abs(acc.x - lastX);
+			var deltaY = Math.abs(acc.y - lastY);
+			var deltaZ = Math.abs(acc.z - lastZ);
 			
-			if (deltaX + deltaY + deltaZ > 3) {
+			if (deltaX + deltaY + deltaZ > countThresh) {
 				moveCounter++;
 			} else {
 				moveCounter = Math.max(0, --moveCounter);
 			}
 
-			if (moveCounter > shakeThreshold) {
-				console.log('SHAKE!!!');
-				document.body.style.backgroundColor = "red";
-			} else if (moveCounter === 0) {
-				document.body.style.backgroundColor = "blue";
-			}
-
 			lastX = acc.x;
 			lastY = acc.y;
 			lastZ = acc.z;
+		} else {
+			moveCounter = Math.max(0, --moveCounter);			
 		}
 
-		box.innerHTML = "counter: " + moveCounter + "/" + shakeThreshold;
+		if (moveCounter > shakeThresh) {
+			console.log('SHAKE!!!');
+			document.body.style.backgroundColor = "red";
+		} else if (moveCounter === 0) {
+			document.body.style.backgroundColor = "blue";
+		}
+			
+		box.innerHTML = "counter: " + moveCounter + "/" + shakeThresh + "<br>" + acc;
 	}
 
 }
