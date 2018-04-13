@@ -6,12 +6,13 @@
 
 function main() {
 
-	var box = document.getElementById("box");
-
 	window.addEventListener('devicemotion', motion, false);
 
 	var lastX, lastY, lastZ;
 	var moveCounter = 0;
+
+	var box = document.getElementById("box");
+	box.innerHTML = "counter: " + moveCounter;
 
 	function motion(e) {
 		let acc = e.acceleration;
@@ -47,7 +48,7 @@ function main() {
 				console.log('SHAKE!!!');
 				document.body.style.backgroundColor = "red";
 			} else if (moveCounter === 0) {
-				document.body.style.backgroundColor = "white";
+				document.body.style.backgroundColor = "blue";
 			}
 
 			lastX = acc.x;
