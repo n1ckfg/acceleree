@@ -10,7 +10,7 @@ function main() {
 
 	var lastX, lastY, lastZ;
 	var moveCounter = 0;
-	var shakeThreshold = 10;
+	var shakeThreshold = 20;
 
 	var box = document.getElementById("box");
 
@@ -54,7 +54,7 @@ function main() {
 			lastZ = acc.z;
 		}
 
-		box.innerHTML = "counter: " + moveCounter;
+		box.innerHTML = "counter: " + moveCounter + "/" + shakeThreshold;
 	}
 
 }
