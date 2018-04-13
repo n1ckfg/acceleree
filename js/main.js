@@ -60,7 +60,7 @@ function main() {
 		var accX = round(acc.x, 3);
 		var accY = round(acc.y, 3);
 		var accZ = round(acc.z, 3);
-		box.innerHTML = "counter: " + moveCounter + "/" + shakeThresh + "<br>x: " + accX + "<br>y: " + accY + "<br>z: " + accZ;
+		box.innerHTML = "counter:<br>" + moveCounter + "/" + shakeThresh + "<br><br>x: " + accX + "<br>y: " + accY + "<br>z: " + accZ;
 	}
 
 	function round(number, precision) {
