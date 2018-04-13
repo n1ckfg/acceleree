@@ -57,7 +57,15 @@ function main() {
 			document.body.style.backgroundColor = "blue";
 		}
 			
-		box.innerHTML = "counter: " + moveCounter + "/" + shakeThresh + "<br>" + acc.x + "<br>" + acc.y + "<br>" + acc.z;
+		var accX = round(acc.x, 3);
+		var accY = round(acc.y, 3);
+		var accZ = round(acc.z, 3);
+		box.innerHTML = "counter: " + moveCounter + "/" + shakeThresh + "<br>x: " + accX + "<br>y: " + accY + "<br>z: " + accZ;
+	}
+
+	function round(number, precision) {
+	  	var factor = Math.pow(10, precision);
+	  	return Math.round(number * factor) / factor;
 	}
 
 }
