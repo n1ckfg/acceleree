@@ -39,7 +39,7 @@ function main() {
 				moveCounter = Math.max(0, --moveCounter);
 			}
 
-			if (moveCounter > 2) {
+			if (moveCounter > 10) {
 				console.log('SHAKE!!!');
 				document.body.style.backgroundColor = "red";
 				moveCounter = 0;
