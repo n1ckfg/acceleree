@@ -39,6 +39,8 @@ function main() {
 				moveCounter = Math.max(0, --moveCounter);
 			}
 
+			body.innerHtml = moveCounter;
+
 			if (moveCounter > 10) {
 				console.log('SHAKE!!!');
 				document.body.style.backgroundColor = "red";
