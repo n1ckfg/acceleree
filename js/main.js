@@ -57,7 +57,7 @@ function main() {
 			document.body.style.backgroundColor = "blue";
 		}
 			
-		box.innerHTML = "counter: " + moveCounter + "/" + shakeThresh + "<br>" + acc;
+		box.innerHTML = "counter: " + moveCounter + "/" + shakeThresh + "<br>" + acc.x + "<br>" + acc.y + "<br>" + acc.z;
 	}
 
 }
