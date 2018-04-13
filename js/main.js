@@ -13,7 +13,6 @@ function main() {
 	var shakeThreshold = 10;
 
 	var box = document.getElementById("box");
-	box.innerHTML = "counter: " + moveCounter;
 
 	function motion(e) {
 		let acc = e.acceleration;
@@ -43,8 +42,6 @@ function main() {
 				moveCounter = Math.max(0, --moveCounter);
 			}
 
-			box.innerHTML = "counter: " + moveCounter;
-
 			if (moveCounter > shakeThreshold) {
 				console.log('SHAKE!!!');
 				document.body.style.backgroundColor = "red";
@@ -56,6 +53,8 @@ function main() {
 			lastY = acc.y;
 			lastZ = acc.z;
 		}
+
+		box.innerHTML = "counter: " + moveCounter;
 	}
 
 }
