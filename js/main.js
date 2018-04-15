@@ -39,15 +39,15 @@ function main() {
 			
 			if (deltaX + deltaY + deltaZ >= countThresh) {
 				moveCounter++;
-			}
+			} else {
+			 moveCounter = Math.max(0, --moveCounter);			
+		}
 				
 			
 
 			lastX = acc.x;
 			lastY = acc.y;
 			lastZ = acc.z;
-		} else {
-			moveCounter = Math.max(0, --moveCounter);			
 		}
 
 		if (moveCounter >= activeThresh) {
