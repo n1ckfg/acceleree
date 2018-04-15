@@ -9,9 +9,9 @@ function main() {
 	window.addEventListener("devicemotion", motion, false);
 
 	var lastX, lastY, lastZ;
-	var moveCounter = 0.0;
-	var trackThresh = 0.001;
-	var countThresh = 0.1;
+	var moveCounter = 0;
+	var trackThresh = 0.01;
+	var countThresh = 2.0;
 	var activeThresh = 10.0;
 
 	var box = document.getElementById("box");
@@ -40,14 +40,14 @@ function main() {
 			if (deltaX + deltaY + deltaZ >= countThresh) {
 				moveCounter++;
 			} else {
-				moveCounter = Math.max(0.0, --moveCounter);
-			}
+			 moveCounter = Math.max(0, --moveCounter);			
+		}
+				
+			
 
 			lastX = acc.x;
 			lastY = acc.y;
 			lastZ = acc.z;
-		} else {
-			moveCounter = Math.max(0.0, --moveCounter);			
 		}
 
 		if (moveCounter >= activeThresh) {
