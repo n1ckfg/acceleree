@@ -10,8 +10,8 @@ function main() {
 
 	var lastX, lastY, lastZ;
 	var moveCounter = 0;
-	var trackThresh = 0.001;
-	var countThresh = 1.0;
+	var trackThresh = 0.01;
+	var countThresh = 2.0;
 	var activeThresh = 10.0;
 
 	var box = document.getElementById("box");
