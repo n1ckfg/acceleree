@@ -1,7 +1,8 @@
 body {
 	margin: 10px;
-	background: gray;
-	font-size: 100px;
+	background: #777777;
+	font-size: 48px;
+	line-height: 0.9em;
 }
 
 #box {
@@ -10,8 +11,11 @@ body {
 	width: 400px;
 	height: 200px;
 	border: 2px dashed blue;
+	background: #aaaaaa;
 }
 
 .msg {
 	font-style: italic;
+	color: #aaaabb;
+	opacity: 0.5;
 }

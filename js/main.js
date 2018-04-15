@@ -9,10 +9,10 @@ function main() {
 	window.addEventListener("devicemotion", motion, false);
 
 	var lastX, lastY, lastZ;
-	var moveCounter = 0;
+	var moveCounter = 0.0;
 	var trackThresh = 0.001;
-	var countThresh = 3;
-	var activeThresh = 20;
+	var countThresh = 0.1;
+	var activeThresh = 10.0;
 
 	var box = document.getElementById("box");
 
@@ -25,7 +25,7 @@ function main() {
 		if (!acc.x) return;
 
 		// only fires if x,y,z > threshold
-		if (Math.abs(acc.x) > trackThresh && Math.abs(acc.y) > trackThresh && Math.abs(acc.z) > trackThresh) {
+		if (Math.abs(acc.x) >= trackThresh && Math.abs(acc.y) >= trackThresh && Math.abs(acc.z) >= trackThresh) {
 			if (!lastX) {
 				lastX = acc.x;
 				lastY = acc.y;
@@ -37,30 +37,29 @@ function main() {
 			var deltaY = Math.abs(acc.y - lastY);
 			var deltaZ = Math.abs(acc.z - lastZ);
 			
-			if (deltaX + deltaY + deltaZ > countThresh) {
+			if (deltaX + deltaY + deltaZ >= countThresh) {
 				moveCounter++;
 			} else {
-				moveCounter = Math.max(0, --moveCounter);
+				moveCounter = Math.max(0.0, --moveCounter);
 			}
 
 			lastX = acc.x;
 			lastY = acc.y;
 			lastZ = acc.z;
 		} else {
-			moveCounter = Math.max(0, --moveCounter);			
+			moveCounter = Math.max(0.0, --moveCounter);			
 		}
 
-		if (moveCounter > activeThresh) {
+		if (moveCounter >= activeThresh) {
 			console.log("SHAKE!");
 			document.body.style.backgroundColor = "red";
-		} else if (moveCounter === 0) {
+		} else if (moveCounter < trackThresh) {
 			document.body.style.backgroundColor = "blue";
 		}
 			
-		var accX = round(acc.x, 3);
-		var accY = round(acc.y, 3);
-		var accZ = round(acc.z, 3);
-		box.innerHTML = "threshold:<br>" + moveCounter + "/" + activeThresh + "<br><br>x: " + accX + "<br>y: " + accY + "<br>z: " + accZ;
+		var sayText = "<b>thresh:</b><br>" + moveCounter + "/" + activeThresh;
+		sayText += "<br><br><b>x:</b> " + round(lastX, 3) + "<br><b>y:</b> " + round(lastY, 3) + "<br><b>z:</b> " + round(lastZ, 3);
+		box.innerHTML = sayText;
 	}
 
 	function round(number, precision) {
