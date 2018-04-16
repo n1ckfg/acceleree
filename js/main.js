@@ -19,10 +19,14 @@ function main() {
 	var lightOn = false;
 
 	function motion(e) {
+		/*
+		// This produces different results on iOS and Android.
 		var acc = e.acceleration;
 		if (!acc.hasOwnProperty("x")) {
 			acc = e.accelerationIncludingGravity;
 		}
+		*/
+		var acc = e.accelerationIncludingGravity;
 
 		if (!acc.x) return;
 
@@ -53,6 +57,7 @@ function main() {
 		if (moveCounter >= activeThresh) {
 			console.log("SHAKE!");
 			lightOn = !lightOn;
+			moveCounter = 0;
 			document.body.style.backgroundColor = "yellow";
 		} else if (moveCounter < trackThresh) {
 			document.body.style.backgroundColor = "blue";
@@ -63,8 +68,10 @@ function main() {
 		box.innerHTML = boxText;
 
 		if (lightOn) {
+			light.innerHTML = "ON";
 			light.style.backgroundColor = "green";
 		} else {
+			light.innerHTML = "OFF";
 			light.style.backgroundColor = "red";
 		}
 	}
