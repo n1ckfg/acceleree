@@ -12,7 +12,7 @@ function main() {
 	var moveCounter = 0;
 	var trackThresh = 0.01;
 	var countThresh = 2.0;
-	var activeThresh = 10.0;
+	var activeThresh = 20.0;
 
 	var box = document.getElementById("box");
 	var light = document.getElementById("light");
@@ -58,7 +58,7 @@ function main() {
 			document.body.style.backgroundColor = "blue";
 		}
 			
-		var boxText = "<b>thresh:</b><br>" + moveCounter + "/" + activeThresh;
+		var boxText = "<b>thresh:</b> " + moveCounter + "/" + activeThresh;
 		boxText += "<br><br><b>x:</b> " + round(lastX, 3) + "<br><b>y:</b> " + round(lastY, 3) + "<br><b>z:</b> " + round(lastZ, 3);
 		box.innerHTML = boxText;
 
