@@ -6,7 +6,9 @@ body {
 }
 
 #box {
-	position: relative;
+	position: absolute;
+	left: 1em;
+	top: 1.4em;
 	padding: 10px;
 	width: 400px;
 	height: 200px;
@@ -14,7 +16,20 @@ body {
 	background: #aaaaaa;
 }
 
-.msg {
+#light {
+	position:relative;
+	left: 412px;
+	top: 0em;
+	width: 1em;
+	height: 1em;
+	background: red;
+	border: 1px solid black;
+}
+
+#header {
+	position: absolute;
+	left: 1em;
+	top: 0.4em;
 	font-style: italic;
 	color: #aaaabb;
 	opacity: 0.5;

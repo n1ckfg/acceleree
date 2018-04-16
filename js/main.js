@@ -15,6 +15,8 @@ function main() {
 	var activeThresh = 10.0;
 
 	var box = document.getElementById("box");
+	var light = document.getElementById("light");
+	var lightOn = false;
 
 	function motion(e) {
 		var acc = e.acceleration;
@@ -40,10 +42,8 @@ function main() {
 			if (deltaX + deltaY + deltaZ >= countThresh) {
 				moveCounter++;
 			} else {
-			 moveCounter = Math.max(0, --moveCounter);			
-		}
-				
-			
+				moveCounter = Math.max(0, --moveCounter);			
+			}
 
 			lastX = acc.x;
 			lastY = acc.y;
@@ -52,14 +52,21 @@ function main() {
 
 		if (moveCounter >= activeThresh) {
 			console.log("SHAKE!");
-			document.body.style.backgroundColor = "red";
+			lightOn = !lightOn;
+			document.body.style.backgroundColor = "yellow";
 		} else if (moveCounter < trackThresh) {
 			document.body.style.backgroundColor = "blue";
 		}
 			
-		var sayText = "<b>thresh:</b><br>" + moveCounter + "/" + activeThresh;
-		sayText += "<br><br><b>x:</b> " + round(lastX, 3) + "<br><b>y:</b> " + round(lastY, 3) + "<br><b>z:</b> " + round(lastZ, 3);
-		box.innerHTML = sayText;
+		var boxText = "<b>thresh:</b><br>" + moveCounter + "/" + activeThresh;
+		boxText += "<br><br><b>x:</b> " + round(lastX, 3) + "<br><b>y:</b> " + round(lastY, 3) + "<br><b>z:</b> " + round(lastZ, 3);
+		box.innerHTML = boxText;
+
+		if (lightOn) {
+			light.style.backgroundColor = "green";
+		} else {
+			light.style.backgroundColor = "red";
+		}
 	}
 
 	function round(number, precision) {
