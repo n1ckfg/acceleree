@@ -68,10 +68,10 @@ function main() {
 		box.innerHTML = boxText;
 
 		if (lightOn) {
-			light.innerHTML = "ON";
+			light.innerHTML = "O";
 			light.style.backgroundColor = "green";
 		} else {
-			light.innerHTML = "OFF";
+			light.innerHTML = "X";
 			light.style.backgroundColor = "red";
 		}
 	}
