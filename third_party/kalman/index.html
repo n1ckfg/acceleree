@@ -1,0 +1,37 @@
+<!-- http://cardboard-hand.herokuapp.com/kalman.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Kalman filtered accelerometer data</title>
+
+		<!-- CSS -->
+  		<link rel="stylesheet" href="./css/style.css" type="text/css" media="screen"/>
+	</head>
+
+	<body>
+		<table>
+			<tr>
+				<td>ACCELEROMETER</td>
+				<td><span class="accelerometer"></span></td>
+			</tr>
+			<tr>
+				<td>KALMAN</td>
+				<td><span class="kalman-result"></span></td>
+			</tr>
+			<tr>
+				<td>DELTA</td>
+				<td><span class="difference"></span></td>
+			</tr>
+		</table>
+		<script type="text/javascript" src="./js/three.min.js"></script>
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script type="text/javascript" src="./js/leap-0.6.2.js"></script>
+		<script type="text/javascript" src="./js/sylvester.src.js"></script>
+		<script type="text/javascript" src="./js/kalman.js"></script>
+		<script type="text/javascript" src="./js/kalman-filter.js"></script>		
+	</body>	
+
+</html>
